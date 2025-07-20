@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- App name -->
+    <string name="app_name">TradeUpAppMoi</string>
+    <string name="default_web_client_id">YOUR_CLIENT_ID_HERE</string>
+
+
+
+    <!-- Search -->
+    <string name="search">Tìm kiếm</string>
+    <string name="search_hint">Tìm kiếm sản phẩm...</string>
+    <string name="search_items">Tìm kiếm mặt hàng...</string>
+    <string name="category">Danh mục</string>
+    <string name="price">Giá</string>
+    <string name="title">Tiêu đề</string>
+
+    <!-- Ratings -->
+    <string name="submit_review">Gửi đánh giá</string>
+    <string name="write_review">Viết đánh giá...</string>
+    <string name="view_reviews">Xem đánh giá</string>
+
+    <!-- Payment -->
+    <string name="pay_with_stripe">Thanh toán bằng Stripe</string>
+    <string name="pay_now">Thanh toán</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="don_t_have_an_account_register">Don\'t have an account? Register</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="send_reset_email">Send Reset Email</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="resend_verification_email">Resend verification email</string>
+    <string name="li_n_h">Liên hệ</string>
+    <string name="nh_gi_0_0">Đánh giá: 0.0</string>
+    <string name="t_n_ng_i_d_ng">Tên người dùng</string>
+    <string name="bio_here">Bio here</string>
+    <string name="contact_infoo">Contact info</string>
+    <string name="display_namee">Display Name</string>
+    <string name="rating_4_5">Rating: 4.5</string>
+    <string name="sell">Sell</string>
+    <string name="home">Home</string>
+    <string name="messages">Messages</string>
+    <string name="searchh">Search</string>
+    <string name="profile">Profile</string>
+    <string name="trang_ch">Trang chủ</string>
+    <string name="ng_b_n">Đăng bán</string>
+    <string name="tin_nh_n">Tin nhắn</string>
+    <string name="h_s_c_nh_n">Hồ sơ cá nhân</string>
+    <string name="register">Register</string>
+    <string name="emaill">Email</string>
+    <string name="passwordd">Password</string>
+    <string name="already_have_an_account_login">Already have an account? Login</string>
+    <string name="create_account">Create Account</string>
+    <string name="i_nh">Đổi ảnh</string>
+    <string name="v_hi_u_h_a_t_i_kho_n">Vô hiệu hóa tài khoản</string>
+    <string name="x_a_t_i_kho_n">Xóa tài khoản</string>
+    <string name="l_u_thay_i">Lưu thay đổi</string>
+    <string name="ti_u_s">Tiểu sử</string>
+    <string name="th_ng_tin_li_n_h">Thông tin liên hệ</string>
+    <string name="t_n_hi_n_th">Tên hiển thị</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="t_m_ki_m">Tìm kiếm</string>
+    <string name="l_u_s_n_ph_m">Lưu sản phẩm</string>
+    <string name="m_t_s_n_ph_m">Mô tả sản phẩm</string>
+    <string name="gi_s_n_ph_m">Giá sản phẩm</string>
+    <string name="ti_u_s_n_ph_m">Tiêu đề sản phẩm</string>
+    <string name="v_tr_s_n_ph_m">Vị trí sản phẩm</string>
+    <string name="ch_n_nh_s_n_ph_m">Chọn ảnh sản phẩm</string>
+    <string name="location">Location</string>
+    <string-array name="product_categories">
+        <item>Điện thoại</item>
+        <item>Máy tính</item>
+        <item>Xe cộ</item>
+        <item>Đồ gia dụng</item>
+    </string-array>
+
+    <!-- Tình trạng sản phẩm -->
+    <string-array name="product_conditions">
+        <item>Mới</item>
+        <item>Cũ</item>
+        <item>Đã qua sử dụng</item>
+    </string-array>
+
+</resources>
+

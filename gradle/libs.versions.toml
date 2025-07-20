@@ -1,0 +1,61 @@
+[versions]
+agp = "8.10.1"
+algoliasearchAndroid = "3.27.0"
+compiler = "4.15.1"
+compilerVersion = "4.16.0"
+firebaseBom = "33.16.0"
+glide = "4.15.1"
+glideVersion = "4.16.0"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+appcompat = "1.7.1"
+material = "1.12.0"
+activity = "1.10.1"
+constraintlayout = "2.2.1"
+firebase-auth = "23.2.1"
+firebase-firestore = "25.1.4"
+firebase-storage = "21.0.2"
+picasso = "2.8"
+play-services-auth = "21.3.0"
+stripeAndroid = "21.19.0"
+firebaseDatabase = "21.0.0"
+scenecore = "1.0.0-alpha04"
+
+[libraries]
+algoliasearch = { group = "com.algolia", name = "algoliasearch-android", version.ref = "algoliasearchAndroid" }
+compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
+compiler-v4160 = { module = "com.github.bumptech.glide:compiler", version.ref = "compilerVersion" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide-v4160 = { module = "com.github.bumptech.glide:glide", version.ref = "glideVersion" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebase-auth" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebase-firestore" }
+firebase-storage = { group = "com.google.firebase", name = "firebase-storage", version.ref = "firebase-storage" }
+picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
+play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "play-services-auth" }
+#noinspection SimilarGradleDependency
+google-maps-sdk = { module = "com.google.android.gms:play-services-maps", version = "19.2.0" }  # Cập nhật phiên bản nếu cần
+#noinspection SimilarGradleDependency
+maps = "com.google.android.gms:play-services-maps:19.2.0"
+stripe-android = { module = "com.stripe:stripe-android", version.ref = "stripeAndroid" }
+firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
+scenecore = { group = "androidx.xr.scenecore", name = "scenecore", version.ref = "scenecore" }
+
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version = "8.3.2" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version = "1.9.10" }
+google-services = { id = "com.google.gms.google-services", version = "4.4.3" }
+
+
+

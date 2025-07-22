@@ -3,6 +3,8 @@ agp = "8.10.1"
 algoliasearchAndroid = "3.27.0"
 compiler = "4.15.1"
 compilerVersion = "4.16.0"
+design = "28.0.0"
+emojicon = "1.4.2"
 firebaseBom = "33.16.0"
 glide = "4.15.1"
 glideVersion = "4.16.0"
@@ -26,6 +28,8 @@ scenecore = "1.0.0-alpha04"
 algoliasearch = { group = "com.algolia", name = "algoliasearch-android", version.ref = "algoliasearchAndroid" }
 compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
 compiler-v4160 = { module = "com.github.bumptech.glide:compiler", version.ref = "compilerVersion" }
+design = { module = "com.android.support:design", version.ref = "design" }
+emojicon = { module = "io.github.rockerhieu:emojicon", version.ref = "emojicon" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }

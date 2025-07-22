@@ -23,4 +23,3 @@ public class Item {
     public void setImage(String image) { this.image = image; }
 }
 
-

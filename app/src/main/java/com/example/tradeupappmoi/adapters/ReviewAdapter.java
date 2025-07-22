@@ -54,4 +54,3 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         return reviews.size();
     }
 }
-

@@ -23,11 +23,18 @@
             android:src="@drawable/ic_user_placeholder"
             tools:ignore="ImageContrastCheck" />
 
-        <Button
-            android:id="@+id/btnChangePhoto"
-            android:layout_width="wrap_content"
+
+        <EditText
+            android:id="@+id/etImageUrl"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/i_nh" />
+            android:layout_marginTop="8dp"
+            android:hint="@string/h_nh_link_anh"
+            android:minHeight="48dp"
+            android:background="@android:drawable/edit_text"
+            android:textColorHint="#546E7A"
+            tools:ignore="Autofill,TextFields,VisualLintTextFieldSize" />
+
 
         <EditText
             android:id="@+id/etDisplayName"
@@ -100,6 +107,16 @@
             android:backgroundTint="@android:color/holo_red_dark"
             android:textColor="@android:color/white"
             tools:ignore="VisualLintButtonSize" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@android:color/darker_gray"
+            android:text="@string/ng_xu_t"
+            android:textColor="#4E342E"
+            tools:ignore="VisualLintButtonSize,TouchTargetSizeCheck" />
 
     </LinearLayout>
 </ScrollView>

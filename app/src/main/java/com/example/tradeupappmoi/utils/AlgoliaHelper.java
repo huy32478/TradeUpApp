@@ -11,4 +11,3 @@ public class AlgoliaHelper {
     private static final Client client = new Client(ALGOLIA_APP_ID, ALGOLIA_SEARCH_API_KEY);
     public static final Index index = client.getIndex(INDEX_NAME);
 }
-

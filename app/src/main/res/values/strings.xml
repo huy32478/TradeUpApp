@@ -53,7 +53,6 @@
     <string name="passwordd">Password</string>
     <string name="already_have_an_account_login">Already have an account? Login</string>
     <string name="create_account">Create Account</string>
-    <string name="i_nh">Đổi ảnh</string>
     <string name="v_hi_u_h_a_t_i_kho_n">Vô hiệu hóa tài khoản</string>
     <string name="x_a_t_i_kho_n">Xóa tài khoản</string>
     <string name="l_u_thay_i">Lưu thay đổi</string>
@@ -69,6 +68,9 @@
     <string name="v_tr_s_n_ph_m">Vị trí sản phẩm</string>
     <string name="ch_n_nh_s_n_ph_m">Chọn ảnh sản phẩm</string>
     <string name="location">Location</string>
+    <string name="ng_xu_t">Đăng xuất</string>
+    <string name="h_nh_link_anh">h_nh_link_anh</string>
+    <string name="i_nh">i_nh</string>
     <string-array name="product_categories">
         <item>Điện thoại</item>
         <item>Máy tính</item>
@@ -84,4 +86,3 @@
     </string-array>
 
 </resources>
-

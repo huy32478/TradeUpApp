@@ -1,6 +1,7 @@
 package com.example.tradeupappmoi.fragments;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -24,7 +25,9 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.tradeupappmoi.R;
+import com.example.tradeupappmoi.activities.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -70,7 +73,7 @@ public class ProfileFragment extends Fragment {
         etBio = view.findViewById(R.id.etBio);
         etContact = view.findViewById(R.id.etContact);
         ratingBar = view.findViewById(R.id.ratingBar);
-        Button btnChangePhoto = view.findViewById(R.id.btnChangePhoto);
+
         Button btnSave = view.findViewById(R.id.btnSave);
         Button btnDeactivate = view.findViewById(R.id.btnDeactivate);
         Button btnDeleteAccount = view.findViewById(R.id.btnDeleteAccount);
@@ -81,12 +84,55 @@ public class ProfileFragment extends Fragment {
 
         loadUserProfile();
 
-        btnChangePhoto.setOnClickListener(v -> openImagePicker());
+
         btnSave.setOnClickListener(v -> saveUserProfile());
-        btnDeactivate.setOnClickListener(v -> Toast.makeText(getContext(), "Tính năng đang phát triển", Toast.LENGTH_SHORT).show());
-        btnDeleteAccount.setOnClickListener(v -> Toast.makeText(getContext(), "Tính năng đang phát triển", Toast.LENGTH_SHORT).show());
+
+        // Hủy kích hoạt tài khoản
+        btnDeactivate.setOnClickListener(v -> {
+            FirebaseUser user = mAuth.getCurrentUser();
+            if (user != null && !user.isEmailVerified()) {
+                // Nếu email chưa được xác minh, gửi email xác minh lại cho người dùng
+                user.sendEmailVerification()
+                        .addOnSuccessListener(aVoid -> Toast.makeText(getContext(), "Verification email sent, please verify your email.", Toast.LENGTH_LONG).show())
+                        .addOnFailureListener(e -> Toast.makeText(getContext(), "Failed to send verification email: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+            } else {
+                // Nếu email đã được xác minh, tiến hành hủy kích hoạt tài khoản
+                Toast.makeText(getContext(), "Your email is already verified, proceeding with deactivation.", Toast.LENGTH_SHORT).show();
+                deactivateAccount();
+            }
+        });
+
+        // Xóa tài khoản
+        btnDeleteAccount.setOnClickListener(v -> {
+            FirebaseUser user = mAuth.getCurrentUser();
+            if (user != null && !user.isEmailVerified()) {
+                // Nếu email chưa được xác minh, gửi email xác minh lại cho người dùng
+                user.sendEmailVerification()
+                        .addOnSuccessListener(aVoid -> Toast.makeText(getContext(), "Verification email sent, please verify your email to proceed with account deletion.", Toast.LENGTH_LONG).show())
+                        .addOnFailureListener(e -> Toast.makeText(getContext(), "Failed to send verification email: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+            } else {
+                // Nếu email đã được xác minh, tiến hành xóa tài khoản
+                Toast.makeText(getContext(), "Your email is already verified, proceeding with account deletion.", Toast.LENGTH_SHORT).show();
+                deleteAccount();
+            }
+        });
+
+        Button btnLogout = view.findViewById(R.id.btnLogout);
+        btnLogout.setOnClickListener(v -> {
+            mAuth.signOut(); // Đăng xuất Firebase
+
+            // Mở lại màn hình Login và xóa ngăn xếp backstack
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        });
 
         return view;
+    }
+
+    private void deactivateAccount() {
+        // Hàm này sẽ thực hiện các công việc cần thiết để hủy kích hoạt tài khoản,
+        // ví dụ như yêu cầu người dùng xác nhận trước khi thực hiện thao tác hủy.
     }
 
     private void openImagePicker() {
@@ -146,8 +192,6 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-
-
     private void updateFirestoreProfile(String uid, String displayName, String bio, String contact, float rating, String imageUrl) {
         db.collection("users").document(uid).update(
                         "displayName", displayName,
@@ -165,5 +209,65 @@ public class ProfileFragment extends Fragment {
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         String type = cr.getType(uri);
         return (type != null) ? mime.getExtensionFromMimeType(type) : "jpg";
+    }
+
+    // Phương thức để xóa tài khoản người dùng
+    private void deleteAccount() {
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        if (user != null) {
+            if (!user.isEmailVerified()) {
+                // Nếu email chưa được xác minh, gửi lại email xác minh
+                user.sendEmailVerification()
+                        .addOnSuccessListener(aVoid -> {
+                            // Thông báo người dùng đã gửi email xác minh
+                            Toast.makeText(getContext(), "Verification email sent. Please verify your email before deleting the account.", Toast.LENGTH_LONG).show();
+                            // Khóa chức năng xóa tài khoản cho đến khi người dùng xác minh
+                            // Có thể gửi một yêu cầu đến người dùng để quay lại sau khi đã xác minh email
+                        })
+                        .addOnFailureListener(e -> {
+                            // Thông báo nếu gửi email thất bại
+                            Toast.makeText(getContext(), "Failed to send verification email: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
+            } else {
+                // Nếu email đã được xác minh, hỏi người dùng có chắc chắn muốn xóa tài khoản
+                showDeleteConfirmationDialog(user);
+            }
+        }
+    }
+
+    private void showDeleteConfirmationDialog(FirebaseUser user) {
+        new AlertDialog.Builder(getContext())
+                .setTitle("Confirm Deletion")
+                .setMessage("Are you sure you want to delete your account? This action cannot be undone.")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    // Kiểm tra lại xem email đã được xác minh trước khi xóa
+                    if (!user.isEmailVerified()) {
+                        Toast.makeText(getContext(), "Please verify your email first before deleting your account.", Toast.LENGTH_LONG).show();
+                    } else {
+                        deleteAccountConfirmed(user);
+                    }
+                })
+                .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
+                .show();
+    }
+
+    private void deleteAccountConfirmed(FirebaseUser user) {
+        // Tiến hành xóa tài khoản
+        user.delete()
+                .addOnSuccessListener(aVoid -> {
+                    // Nếu xóa thành công, đăng xuất và chuyển về màn hình đăng nhập
+                    Toast.makeText(getContext(), "Account deleted successfully", Toast.LENGTH_SHORT).show();
+                    mAuth.signOut();
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    assert getActivity() != null;
+                    getActivity().finish();
+                })
+                .addOnFailureListener(e -> {
+                    // Thông báo lỗi khi xóa tài khoản
+                    Toast.makeText(getContext(), "Failed to delete account: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 }

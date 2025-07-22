@@ -23,6 +23,8 @@ play-services-auth = "21.3.0"
 stripeAndroid = "21.19.0"
 firebaseDatabase = "21.0.0"
 scenecore = "1.0.0-alpha04"
+playServicesLocation = "21.3.0"
+firebaseMessaging = "24.1.2"
 
 [libraries]
 algoliasearch = { group = "com.algolia", name = "algoliasearch-android", version.ref = "algoliasearchAndroid" }
@@ -53,6 +55,8 @@ maps = "com.google.android.gms:play-services-maps:19.2.0"
 stripe-android = { module = "com.stripe:stripe-android", version.ref = "stripeAndroid" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
 scenecore = { group = "androidx.xr.scenecore", name = "scenecore", version.ref = "scenecore" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
 
 
 [plugins]

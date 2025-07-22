@@ -2,6 +2,7 @@ package com.example.tradeupappmoi.fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -30,6 +31,8 @@ public class SearchFragment extends Fragment {
 
     private ItemAdapter adapter;
     private final List<Item> itemList = new ArrayList<>();
+    private final Handler searchHandler = new Handler();
+    private final int SEARCH_DELAY = 200;  // Delay time for search (in milliseconds)
 
     public SearchFragment() {
         // Required empty public constructor
@@ -56,7 +59,11 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                performSearch(s.toString());
+                // Remove any previous pending search actions
+                searchHandler.removeCallbacksAndMessages(null);
+
+                // Run search after the delay
+                searchHandler.postDelayed(() -> performSearch(s.toString()), SEARCH_DELAY);
             }
         });
 
@@ -65,6 +72,14 @@ public class SearchFragment extends Fragment {
 
     @SuppressLint("NotifyDataSetChanged")
     private void performSearch(String keyword) {
+        // Show a loading message or indication here (e.g., progress bar)
+
+        if (keyword.isEmpty()) {
+            itemList.clear();
+            adapter.notifyDataSetChanged();
+            return;  // Do nothing if keyword is empty
+        }
+
         Query query = new Query(keyword).setHitsPerPage(20);
 
         AlgoliaHelper.index.searchAsync(query, (content, error) -> {
@@ -78,6 +93,12 @@ public class SearchFragment extends Fragment {
                 assert content != null;
                 JSONArray hits = content.getJSONArray("hits");
                 itemList.clear();
+
+                if (hits.length() == 0) {
+                    assert getActivity() != null;
+                    getActivity().runOnUiThread(() -> Toast.makeText(getContext(), "No results found", Toast.LENGTH_SHORT).show());
+                }
+
                 for (int i = 0; i < hits.length(); i++) {
                     JSONObject obj = hits.getJSONObject(i);
                     Item item = new Item();

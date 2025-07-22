@@ -46,7 +46,6 @@
     <string name="profile">Profile</string>
     <string name="trang_ch">Trang chủ</string>
     <string name="ng_b_n">Đăng bán</string>
-    <string name="tin_nh_n">Tin nhắn</string>
     <string name="h_s_c_nh_n">Hồ sơ cá nhân</string>
     <string name="register">Register</string>
     <string name="emaill">Email</string>
@@ -61,16 +60,18 @@
     <string name="t_n_hi_n_th">Tên hiển thị</string>
     <string name="profile_picture">Profile Picture</string>
     <string name="t_m_ki_m">Tìm kiếm</string>
-    <string name="l_u_s_n_ph_m">Lưu sản phẩm</string>
-    <string name="m_t_s_n_ph_m">Mô tả sản phẩm</string>
-    <string name="gi_s_n_ph_m">Giá sản phẩm</string>
-    <string name="ti_u_s_n_ph_m">Tiêu đề sản phẩm</string>
-    <string name="v_tr_s_n_ph_m">Vị trí sản phẩm</string>
-    <string name="ch_n_nh_s_n_ph_m">Chọn ảnh sản phẩm</string>
     <string name="location">Location</string>
     <string name="ng_xu_t">Đăng xuất</string>
     <string name="h_nh_link_anh">h_nh_link_anh</string>
     <string name="i_nh">i_nh</string>
+    <string name="ti_u_s_n_ph_m">ti_u_s_n_ph_m</string>
+    <string name="m_t_s_n_ph_m">m_t_s_n_ph_m</string>
+    <string name="gi_s_n_ph_m">gi_s_n_ph_m</string>
+    <string name="v_tr_s_n_ph_m">v_tr_s_n_ph_m</string>
+    <string name="l_u_s_n_ph_m">l_u_s_n_ph_m</string>
+    <string name="nh_p_tin_nh_n">nh_p_tin_nh_n</string>
+
+
     <string-array name="product_categories">
         <item>Điện thoại</item>
         <item>Máy tính</item>
